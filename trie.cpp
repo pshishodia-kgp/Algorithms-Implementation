@@ -1,5 +1,6 @@
 // code for problem 
 // http://codeforces.com/contest/271/problem/D
+//http://codeforces.com/problemset/problem/282/E
 
 #include <bits/stdc++.h>
 
