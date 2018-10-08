@@ -1,2 +1,1 @@
-
-https://www.codechef.com/viewsolution/20560530
+20560530
