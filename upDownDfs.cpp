@@ -24,17 +24,14 @@ void basic_dfs(int v, int prnt){
     }
 }
 
-void parental_dfs(int v, int prnt, int pcolor = -1){
-    if(v != 1){
-        if(pcolor == 0)dp[v][0] += 1 + dp[prnt][0] + dp[prnt][1] - (1 + dp[v][0] + dp[v][1]);
-        else dp[v][1] += 1 + dp[prnt][1] - (1 + dp[v][1]); 
-    }
-
+void parental_dfs(int v, int prnt){
     for(auto p : g[v]){
-        int u = p.first, c = p.second; 
+        int u = p.first, c = p.second;
         if(u == prnt)continue;
 
-        parental_dfs(u, v, c);
+        if(c == 0)dp[u][0] += 1 + dp[v][0] + dp[v][1] - (1 + dp[u][0] + dp[u][1]);
+        else dp[u][1] += 1 + dp[v][1] - (1 + dp[u][1]); 
+        parental_dfs(u, v);
     }
 }
 
