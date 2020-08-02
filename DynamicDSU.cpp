@@ -27,3 +27,4 @@ struct DynamicDSU{
     void rollback(int upto){
         while(st.size() > upto)rollback(); 
     }
+}dsu(N);
