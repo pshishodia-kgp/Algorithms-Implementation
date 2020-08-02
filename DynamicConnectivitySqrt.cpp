@@ -3,8 +3,6 @@
     Created at : 04:37:07 PM, 01 August 2020
     Link : https://codeforces.com/problemset/problem/813/F
 */
-
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -42,13 +40,18 @@ int gcd(int a, int b, int &x, int &y){if(a == 0){x = 0, y = 1; return b;} int x1
 */
 
 const int N = 1e5 + 5; 
+vector<int> g[N];
+vector<pair<int, int> > cmpG[N];  
+int cmp[N] = {}, notbipar = 0, cmpVis[N] = {}, vis[N] = {}, color[N] = {}, cmpCol[N] = {}; 
 
 struct Graph{
-    vector<int> g[N];
-    vector<pair<int, int> > cmpG[N];  
-    int cmp[N] = {}, notbipar = 0, cmpVis[N] = {}, vis[N] = {}, color[N] = {}, cmpCol[N] = {}; 
 
     Graph(int n, vector<pair<int, int> > edges){
+        for(int i = 0;i < N; ++i){
+            g[i].clear(); cmpG[i].clear();
+            cmp[i] = cmpVis[i] = vis[i] = color[i] = cmpCol[i] = notbipar = 0; 
+        }
+
         for(auto p: edges){
             int x = p.first, y = p.second; 
             g[x].push_back(y); g[y].push_back(x); 
@@ -152,10 +155,8 @@ int main(){
             prv[num[j]] ^= 1; 
 
             vector<pair<int, int> > curr; 
-            for(int k: ind){
-                assert(prv[k] >= now[k]); 
-                if(prv[k] && !now[k])curr.push_back(edge[k]); 
-            }
+            for(int k: ind)if(prv[k])curr.push_back(edge[k]); 
+
             g.isBipartite(curr)? cout<<"YES\n" : cout<<"NO\n"; 
         }
     }
