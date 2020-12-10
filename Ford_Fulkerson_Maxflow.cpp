@@ -11,6 +11,9 @@ int n, m, a[N];
 long long ans;
 
 struct fordFulkerson{
+	// To find a feasible solution for graphs with nodes having fixed demands and supply.
+	// Connect src node to all nodes with demand dv with edge capacity dv, and similary supply nodes to a sink nodes. 
+	// For lower bounds on edges demand of each node will be L_v = Sum out_L - sum in_l, edge capacity = R_e - L_e. 
 	int n, source, sink;
 	vector<int> parent;
 	vector<vector<int> > cap, g;
